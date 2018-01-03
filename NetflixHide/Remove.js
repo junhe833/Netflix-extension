@@ -37,27 +37,27 @@ var config = {
 
 var hideOrTint = function (sliderDiv) {
 	let name = getMovieName(sliderDiv);
-	if(name == null){
+	if (name == null) {
 		sliderDiv.style.display = "none";
-	}else if (movies[name]) {
+	} else if (movies[name]) {
 		//hide
 		if (removeOrTint == 'tint') {
 			sliderDiv.style.opacity = "0.2";
 		} else {
 			sliderDiv.style.display = "none";
 		}
-	} else if (name!=null && edit && !sliderDiv.querySelector("div[class='select-style']")) {
-			//custom div
-			var divNode = document.createElement("div");
-			divNode.className = "select-style";
+	} else if (name != null && edit && !sliderDiv.querySelector("div[class='select-style']")) {
+		//custom div
+		var divNode = document.createElement("div");
+		divNode.className = "select-style";
 
-			var imgNode = document.createElement("button");
-			imgNode.innerHTML = "X";
-			imgNode.addEventListener("click", imgClose);
+		var imgNode = document.createElement("button");
+		imgNode.innerHTML = "X";
+		imgNode.addEventListener("click", imgClose);
 
-			divNode.appendChild(imgNode);
+		divNode.appendChild(imgNode);
 
-			sliderDiv.insertBefore(divNode, sliderDiv.firstChild);
+		sliderDiv.insertBefore(divNode, sliderDiv.firstChild);
 	}
 }
 
@@ -68,6 +68,27 @@ var callback = function (mutationsList) {
 		if (sliderDiv) {
 			hideOrTint(sliderDiv);
 		}
+	}
+};
+
+var editMode = function () {
+	if (edit) {
+		edit = false;
+		observer.disconnect();
+		let selectList = document.querySelectorAll("div[class='select-style']");
+		for (let i = 0; i < selectList.length; i++) {
+			let tmp = selectList[i];
+			if (removeOrTint == 'tint') {
+				tmp.style.opacity = "0.2";
+			} else {
+				tmp.style.display = "none";
+			}
+		}
+		alert("Disabled Editing");
+	} else {
+		edit = true;
+		addMainListener();
+		alert("Enabled Editing");
 	}
 };
 
@@ -84,25 +105,7 @@ chrome.runtime.onMessage.addListener(function (requestMsg, sender, sendResponse)
 		resetChromeData();
 		break;
 	case "edit":
-		if (edit) {
-			edit = false;
-			observer.disconnect();
-			let selectList = document.querySelectorAll("div[class='select-style']");
-			for (let i = 0; i < selectList.length; i++) {
-				let tmp = selectList[i];
-				if (removeOrTint == 'tint') {
-					tmp.style.opacity = "0.2";
-				} else {
-					tmp.style.display = "none";
-				}
-			}
-			alert("Disabled Editing");
-		} else {
-			edit = true;
-			addMainListener();
-			alert("Enabled Editing");
-		}
-
+		editMode();
 		break;
 	case "Refresh":
 		window.location.reload(true);
@@ -138,7 +141,7 @@ var saveAndRemoveSlider = function (clickedElement) {
 		let tmp = {};
 		tmp[movieName] = "Remove";
 		movies[movieName] = "Remove";
-			
+
 		chrome.storage.sync.set(tmp, function () {
 			if (removeOrTint == 'tint') {
 				sliderDiv.style.opacity = "0.2";
@@ -219,20 +222,22 @@ var profileCallback = function (mutationsList) {
 
 var profileObserver = new MutationObserver(profileCallback);
 
-var removeOrTint = null;
+var removeOrTint = 'tint';
 
 if (document.readyState === 'complete') {
 
-	chrome.storage.sync.get("ManageInterface", function (data) {
-
-		if (data['ManageInterface'] == 'remove') {
+	chrome.storage.sync.get(["ManageInterface","editEnabled"], function (data) {
 	
+		if (data['ManageInterface'] == 'remove') {
 			removeOrTint = 'remove';
-		} else {
-		
+		} else if (data['tint'] == 'remove') {
 			removeOrTint = 'tint';
+		}  
+		if (data['editEnabled']) {
+			edit = true;
+		} else if (!data['editEnabled']) {
+			edit = false;
 		}
-		console.log(data, removeOrTint);
 
 		chrome.storage.sync.get(null, function (e) {
 			movies = e;
@@ -243,7 +248,7 @@ if (document.readyState === 'complete') {
 					childList: true,
 				});
 			}
-			let main = document.querySelector("div[class='mainView']"); 
+			let main = document.querySelector("div[class='mainView']");
 			if (main != null) {
 				let subList = main.querySelectorAll("div[class='slider']");
 				for (let i = 0; i < subList.length; i++) {
