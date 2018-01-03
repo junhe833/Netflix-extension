@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="background.js"></script>
+		<link rel="stylesheet" href="popup.css" type="text/css"/>
+ </head>
+  <body class="on">
+
+  <table>
+  <tr>
+
+  <td>
+  Quick Edit Mode
+  </td>
+  <td>
+
+<div class="tooltip">
+  <span id="edit" class="editDisabled"> &spades; </span> 
+  <br/>
+  <span id="editTooltip" class="tooltiptext">Click to enable quick edit mode.</span>
+</div>
+</td>
+</tr>
+
+  <tr>
+    <td>
+	Change Interface
+  </td>
+   <td>
+<h2></h2>
+
+<div>
+<input type="radio" id="remove" name="interface" value="remove">
+<label for="remove">Hide</label>
+<input type="radio" id="tint" name="interface" value="tint">
+<label for="tint">Tint</label>
+</div>
+
+
+</td>
+</tr>
+
+  <tr>
+    <td>
+ Reset
+  </td>
+   <td>
+<h2></h2>
+<div id="resetDiv">
+<input id="reset" type="button" value="Clear All Data"></input> 
+</div>
+</td>
+</tr>
+</table>
+
+  </body>
+</html>

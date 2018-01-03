@@ -1,0 +1,19 @@
+.select-style select {
+    padding: 5px 8px;
+    border: none;
+    box-shadow: none;
+    background: yellow;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+	background: yellow;
+}
+
+.select-style button {
+	background: black;
+	background-image:none;
+	
+}

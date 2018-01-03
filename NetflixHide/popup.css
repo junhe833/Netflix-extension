@@ -1,0 +1,72 @@
+body{
+	text-align: center;
+	white-space: nowrap;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 300px;
+	height: 250px;
+}
+
+body.off{
+	color: #ccc;
+	background-color: white;
+}
+
+body.on{
+	color: red;
+}
+
+#edit:hover{
+	opacity: 0.5;
+}
+
+.editEnabled {
+	font-size: 48px;
+	color:green;	
+}
+
+.editDisabled {
+	font-size: 48px;
+	color:grey;	
+}
+
+span {
+     vertical-align: middle;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    font-size: 12px;
+    background-color: black;
+    color: #fff;
+}
+
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+
