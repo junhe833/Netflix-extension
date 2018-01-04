@@ -1,21 +1,24 @@
 var addMainListener = function () {
-	console.log("===========ADDING MAIN LISTENER=============");
 	let main = document.querySelector("div[class='mainView']");
-
-	mainObserver.observe(main, mainConfig);
-
-	let subList = main.querySelectorAll("div[class='slider']");
-	for (let i = 0; i < subList.length; i++) {
-		observer.observe(subList[i], config);
+	if (main != null) {
+		let subList = main.querySelectorAll("div[class='slider']");
+		for (let i = 0; i < subList.length; i++) {
+			if (movies != null) {
+				let divList = subList[i].querySelectorAll("div[class^='slider-item slider-item']");
+				for (let sliderDiv of divList) {
+					hideOrTint(sliderDiv);
+				}
+			}
+			observer.observe(subList[i], config);
+		}
+		mainObserver.observe(main, mainConfig);
 	}
-
 };
 
 var movies = null;
 document.addEventListener('load', function (e) {
 	console.log('load', e.target, e.target.tagName);
 	if (e.target.tagName == "IFRAME") {
-		console.log('returned to Netflix main page after video playback: edit=', edit);
 		if (edit) {
 			addMainListener();
 		}
@@ -84,11 +87,11 @@ var editMode = function () {
 				tmp.style.display = "none";
 			}
 		}
-		alert("Disabled Editing");
+		alert("Disabled Quick Editing Mode");
 	} else {
 		edit = true;
 		addMainListener();
-		alert("Enabled Editing");
+		alert("Enabled Quick Editing Mode");
 	}
 };
 
@@ -226,13 +229,13 @@ var removeOrTint = 'tint';
 
 if (document.readyState === 'complete') {
 
-	chrome.storage.sync.get(["ManageInterface","editEnabled"], function (data) {
-	
+	chrome.storage.sync.get(["ManageInterface", "editEnabled"], function (data) {
+
 		if (data['ManageInterface'] == 'remove') {
 			removeOrTint = 'remove';
 		} else if (data['tint'] == 'remove') {
 			removeOrTint = 'tint';
-		}  
+		}
 		if (data['editEnabled']) {
 			edit = true;
 		} else if (!data['editEnabled']) {
