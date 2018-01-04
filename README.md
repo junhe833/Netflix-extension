@@ -1,2 +1,2 @@
 # Netflix-extension
-Hide/Tint your netflix shows
+Hide or tint netflix titles.
