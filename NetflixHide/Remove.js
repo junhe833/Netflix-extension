@@ -203,24 +203,7 @@ var mainConfig = {
 
 var profileCallback = function (mutationsList) {
 	profileObserver.disconnect();
-	for (var mutation of mutationsList) {
-		let div = mutation.target;
-
-		let main = document.querySelector("div[class='mainView']");
-		if (main != null) {
-			let subList = main.querySelectorAll("div[class='slider']");
-			for (let i = 0; i < subList.length; i++) {
-				if (movies != null) {
-					let divList = subList[i].querySelectorAll("div[class^='slider-item slider-item']");
-					for (let sliderDiv of divList) {
-						hideOrTint(sliderDiv);
-					}
-				}
-				observer.observe(subList[i], config);
-			}
-			mainObserver.observe(main, mainConfig);
-		}
-	}
+	addMainListener();	
 };
 
 var profileObserver = new MutationObserver(profileCallback);
@@ -251,20 +234,7 @@ if (document.readyState === 'complete') {
 					childList: true,
 				});
 			}
-			let main = document.querySelector("div[class='mainView']");
-			if (main != null) {
-				let subList = main.querySelectorAll("div[class='slider']");
-				for (let i = 0; i < subList.length; i++) {
-					if (movies != null) {
-						let divList = subList[i].querySelectorAll("div[class^='slider-item slider-item']");
-						for (let sliderDiv of divList) {
-							hideOrTint(sliderDiv);
-						}
-					}
-					observer.observe(subList[i], config);
-				}
-				mainObserver.observe(main, mainConfig);
-			}
+			addMainListener();
 
 		});
 	});
