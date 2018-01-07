@@ -80,11 +80,13 @@ var editMode = function () {
 		observer.disconnect();
 		let selectList = document.querySelectorAll("div[class='select-style']");
 		for (let i = 0; i < selectList.length; i++) {
-			let tmp = selectList[i];
+			let selectNode = selectList[i];
+			let div = selectNode.parentElement;
+			div.removeChild(selectNode);
 			if (removeOrTint == 'tint') {
-				tmp.style.opacity = "0.2";
+				div.style.opacity = "0.2";
 			} else {
-				tmp.style.display = "none";
+				div.style.display = "none";
 			}
 		}
 		alert("Disabled Quick Editing Mode");
