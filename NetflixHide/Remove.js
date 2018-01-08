@@ -14,9 +14,9 @@ var getNearestParent=function(elem,selector){for(;elem&&elem!==document;elem=ele
 return null;};var mainCallback=function(mutationsList){for(var mutation of mutationsList){let div=mutation.target;let subList=div.querySelectorAll("div[class^='slider']");for(let i=0;i<subList.length;i++){if(movies!=null){let divList=subList[i].querySelectorAll("div[class^='slider-item slider-item']");for(let sliderDiv of divList){hideOrTint(sliderDiv);}}
 observer.observe(subList[i],config);}}};var mainObserver=new MutationObserver(mainCallback);var mainConfig={childList:true,subtree:true};var profileCallback=function(mutationsList){profileObserver.disconnect();addMainListener();};var profileObserver=new MutationObserver(profileCallback);var removeOrTint='tint';if(document.readyState==='complete'){if(movies==null){chrome.storage.sync.get(["ManageInterface","editEnabled"],function(data){if(data!=null){if(data['ManageInterface']=='remove'){removeOrTint='remove';}else if(data['tint']=='remove'){removeOrTint='tint';}
 if(data['editEnabled']){edit=true;}else if(!data['editEnabled']){edit=false;}}else{removeOrTint='tint';edit=false;}
-console.log(data,removeOrTint,edit);chrome.storage.sync.get(null,function(e){movies=e;let profile=document.querySelector("div[class^='profile']");if(profile!=null){profileObserver.observe(profile,{childList:true,});}
+chrome.storage.sync.get(null,function(e){movies=e;let profile=document.querySelector("div[class^='profile']");if(profile!=null){profileObserver.observe(profile,{childList:true,});}
 addMainListener();});});}}
 window.onload=function load(){chrome.storage.sync.get(["ManageInterface","editEnabled"],function(data){if(data!=null){if(data['ManageInterface']=='remove'){removeOrTint='remove';}else if(data['tint']=='remove'){removeOrTint='tint';}
 if(data['editEnabled']){edit=true;}else if(!data['editEnabled']){edit=false;}}else{removeOrTint='tint';edit=false;}
-console.log(data,removeOrTint,edit);chrome.storage.sync.get(null,function(e){movies=e;let profile=document.querySelector("div[class^='profile']");if(profile!=null){profileObserver.observe(profile,{childList:true,});}
+chrome.storage.sync.get(null,function(e){movies=e;let profile=document.querySelector("div[class^='profile']");if(profile!=null){profileObserver.observe(profile,{childList:true,});}
 addMainListener();});});}
