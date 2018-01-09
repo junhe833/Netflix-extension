@@ -14,4 +14,4 @@ There are several other options in the extension's option page such as switching
 
 
 
-![a link](https://github.com/junhe833/Netflix-extension/blob/master/NetflixHide/Tutorial.mp4)
+![a link](https://www.youtube.com/watch?v=Veid1Olkuws&feature=youtu.be)
