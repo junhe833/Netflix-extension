@@ -2,7 +2,7 @@
 Hide or tint netflix titles.
 
 
-![alt text](https://github.com/junhe833/Netflix-extension/blob/master/NetflixHide/images/unnamed.jpg)
+[![alt text](https://github.com/junhe833/Netflix-extension/blob/master/NetflixHide/images/unnamed.jpg)](https://www.youtube.com/watch?v=Veid1Olkuws&feature=youtu.be)
 
 
 Usage:
@@ -14,4 +14,4 @@ There are several other options in the extension's option page such as switching
 
 
 
-[Tutorial on how to get and use this extension](https://www.youtube.com/watch?v=Veid1Olkuws&feature=youtu.be)
+
