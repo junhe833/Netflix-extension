@@ -1,6 +1,10 @@
 # Netflix-extension
 Hide or tint netflix titles.
 
+
+![alt text](https://github.com/junhe833/Netflix-extension/blob/master/NetflixHide/images/unnamed.jpg)
+
+
 Usage:
 Two ways to add movies to the list to be tinted or hidden:
 1) Right click on any movie when hovered over them and select "Hide/Tint this title"
@@ -9,4 +13,5 @@ Two ways to add movies to the list to be tinted or hidden:
 There are several other options in the extension's option page such as switching between Hide/Tint for your list of Netflix titles or clear your saved list.
 
 
-![alt text](https://github.com/junhe833/Netflix-extension/blob/master/NetflixHide/images/unnamed.jpg)
+
+![a link](https://github.com/junhe833/Netflix-extension/blob/master/NetflixHide/Tutorial.mp4)
