@@ -1,4 +1,4 @@
-# Netflix-extension
+# Netflix Hide (Chrome Extension)
 Hide or tint netflix titles.
 
 
