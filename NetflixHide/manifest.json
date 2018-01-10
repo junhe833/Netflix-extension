@@ -17,13 +17,13 @@
    "content_scripts": [
         {
           "matches": ["*://*.netflix.com/*"],
-		  "css":["dropdown.css"],
-          "js": ["Remove.js"]	  
+		  "css":["css/dropdown.css"],
+          "js": ["js/Remove.js"]	  
         }
     ],
 	"background": {
         "persistent": true,
-        "scripts": ["popup.js"]
+        "scripts": ["js/popup.js"]
     },
   "permissions": [
     "activeTab",
